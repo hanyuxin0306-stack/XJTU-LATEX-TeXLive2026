@@ -1,53 +1,160 @@
-# XJTU-thesis：西安交通大学学位论文模板 </br> XJTU-thesis: A LaTeX Degree Thesis Template for Xi'an Jiaotong University
+# XJTU-thesis-dev
 
-[![](https://img.shields.io/badge/LPPL-LPPL-blue)](https://www.latex-project.org/lppl/)
-[![](https://img.shields.io/github/last-commit/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis)
-[![](https://img.shields.io/github/issues/obster-y/XJTU-thesis)](https://github.com/obster-y/XJTU-thesis/issues)
+基于 [obster-y/XJTU-thesis](https://github.com/obster-y/XJTU-thesis) 修改的个人使用版西安交通大学学位论文模板仓库。
 
-[本项目](https://github.com/obster-y/XJTU-thesis)为西安交通大学硕博学位论文的~官方~模板（提供 LaTeX 提供中英支持），能够方便、自动地完成论文的写作，且满足学校的要求。
-///
-This project is an ~official~ (LaTeX) template for Xi'an Jiaotong University degree thesis (Chinese and English), which can facilitate the thesis writting, generate some matter conveniently and automatically, meanwhile meet the relevant requirements of the university.
+这份仓库的目标不是继续维护“官方模板”本体，而是提供一份已经在我本机环境中调通、适合继续填写自己论文内容的可用模板。
 
-## 通知 / Notifications
+## 说明
 
-学位办/研究生院在2025年发布了新的论文模板，这次更新修改的内容，**不来源**于本仓库，本项目暂时没有继续跟进这次修改计划，同时建议根据学校新的要求完成论文排版。
+- 本仓库基于原项目 `XJTU-thesis` 二次整理而来。
+- 原项目是西安交通大学硕博学位论文 LaTeX 模板的重要来源，本仓库仅用于个人学习、写作和环境适配。
+- 学校在 2025 年发布了新的论文模板要求，本仓库未对那一版要求进行全面重新适配；正式提交前，请务必自行核对学校最新规范。
 
-如果有同学愿意加入维护模板的计划，可以联系我加入项目。
+## 当前环境
 
-## 学校要求 / Requirements
+- OS: Windows
+- TeX 发行版: TeX Live 2026
+- 编辑器: VS Code + LaTeX Workshop
+- 推荐编译方式: `latexmk`
+- 引擎: `XeLaTeX`
 
-[研究生院模板及要求](http://gs.xjtu.edu.cn/info/1209/7605.htm)
-///
-[Templates from Univerisity's Degree Office](http://gs.xjtu.edu.cn/info/1209/7605.htm)
+## 这份仓库相对原模板做过的适配
 
-此链接的页面内容会更新，但链接不变，目前基于的版本是 2021 年 5 月 8 日 发布的模板与要求。
-///
-The content of these links will be updated while keep links unchanged, this template now using the requirement released on May 8th 2021.
+### 1. 字体适配
 
-## 更新记录 / Updating Logs
+为解决 Windows + TeX Live 2026 环境下 `STKaiti` 无法直接按字体名识别的问题，这份仓库已改为直接加载本机字体文件：
 
-- 2021.06.09：与图书馆沟通，明确了模板中没有提及内容的格式要求，并进行了修改
-- 2021.07.06：与学位办沟通，对目录、参考文献进行了微调，验证了发行版需高于等于 TeXLive 2019
-- 2021.07.17：提交至学位办，等待正式发布
-- 2021.07.22：发布成为正式模板
-///
-- 2021.06.09: Specified formats not mentioned in the template given by University Library, then made some changes.
-- 2021.07.06: Made adjustments about table of contents and references, verified this template need verison of TeXLive >= 2019.
-- 2021.07.17: Submit a release to the Degree Office.
-- 2021.07.22: Published on the Degree Office site.
+`C:/Users/Hello/AppData/Local/Microsoft/Windows/Fonts/STKaiti.ttf`
 
-## 注意事项 / Nota Bene
-- 本项目只能生成 PDF 文件，如有 Word 需求请使用 Word 模板
-- 本项目**未受到**任何形式的任何资助
-- 本项目目前**不能完成**学士学位论文的排版
-- 本项目希望使用者有一定 LaTeX 文档编写基础，但也欢迎新手使用
-- 本项目需要不低于 TeXLive 2023 的 TeX 发行版
-- 本项目只提供多文档结构的模板
-- 请优先使用 dev 分支，本项目将保持 master 分支与研究生院网站上的版本一致，dev 分支则保持基本内容同研究生院版本一致但开发新功能，请注意区分
-- 请在使用前完整阅读：
-  - 本项目在 Github 的 [Wiki](https://github.com/obster-y/XJTU-thesis/wiki)
-  - `main.tex` 中的说明
-  - 自己编译工程生成的 `main.pdf`(变相的使用手册)
-  - 之前的「使用说明.pdf」已不完全适用，所有内容以 [Wiki](https://github.com/obster-y/XJTU-thesis/wiki) 和 示例代码为准
-- Word 模板已移至新项目 [XJTU-thesis-office](https://github.com/obster-y/XJTU-thesis-office)，具体使用请查看该仓库
-- 如果对模板使用或格式有相关问题，请确保认真阅读完 [如何提问](https://github.com/obster-y/XJTU-thesis/wiki/%E5%A6%82%E4%BD%95%E6%8F%90%E9%97%AE) 后再提交 Issue 或 PR
+已同步修改：
+
+- `XJTU-thesis.cls`
+- `beamerfontthemexjtubeamer.sty`
+
+### 2. 新版宏包兼容
+
+为了兼容 TeX Live 2026 中较新的宏包版本，做了以下调整：
+
+- 去掉 `xcolor` 中已经过时的 `usenames` 选项
+- 调整 `mathtools` 与 `unicode-math` 的加载顺序
+- 修复旧版 `tabularray` 示例语法
+- 将旧数学写法 `\over` 改为 `\frac`
+
+### 3. VS Code 编译配置
+
+已将 `.vscode/settings.json` 调整为更适合本模板的配置：
+
+- 默认输出目录为 `Build/`
+- 默认 recipe 优先使用 `LaTeXmk`
+- 适合右上角“构建 LaTeX 项目”直接编译
+
+### 4. 示例内容的轻量清理
+
+为减少日志中的无关警告，对少量示例文本做了缩短或排版调整，例如：
+
+- `Main_Miscellaneous/abstract_chs.tex`
+- `Main_Miscellaneous/abstract_eng.tex`
+- `Main_Spine/c2.tex`
+
+这些修改只影响样例内容，不影响论文整体版式结构。
+
+## 已验证
+
+当前仓库已经验证以下文件可正常编译并生成 PDF：
+
+- `main.tex`
+- `main_beamer.tex`
+
+生成结果位于：
+
+- `Build/main.pdf`
+- `Build/main_beamer.pdf`
+
+## 如何开始写自己的论文
+
+新手建议按下面顺序使用：
+
+### 第一步：先改基本信息
+
+先编辑 `main.tex`，把以下内容替换成你自己的：
+
+- `\title`
+- `\degree`
+- `\author`
+- `\advisor`
+- `\subject`
+- 答辩日期、地点、委员会信息
+
+### 第二步：改摘要
+
+编辑：
+
+- `Main_Miscellaneous/abstract_chs.tex`
+- `Main_Miscellaneous/abstract_eng.tex`
+
+### 第三步：改正文
+
+正文章节默认放在：
+
+- `Main_Spine/c1.tex`
+- `Main_Spine/c2.tex`
+- `Main_Spine/c3.tex`
+- `Main_Spine/c4.tex`
+- `Main_Spine/c5.tex`
+- `Main_Spine/c6.tex`
+
+如果你实际论文章节数不同，可以在 `main.tex` 中自行增删 `\include{...}`。
+
+### 第四步：改参考文献
+
+参考文献数据库默认在：
+
+- `References/reference.bib`
+- `References/achievement.bib`
+
+### 第五步：编译
+
+推荐方式：
+
+1. 打开本仓库根目录
+2. 打开 `main.tex`
+3. 在 VS Code 中点击右上角“构建 LaTeX 项目”
+4. 或选择 recipe: `LaTeXmk`
+
+## 常见提醒
+
+- `输出` 面板里看到 `LaTeX Compiler` / `LaTeX Workshop` 是日志通道，不是编译器切换本体。
+- `Nothing to do` 表示“已经编译成功且文件是最新的”，不是报错。
+- `Problems` 面板里很多是 warning，不一定是真正的编译失败。
+- 真正需要优先关注的报错通常是：
+  - `LaTeX Error`
+  - `Package ... Error`
+  - `Undefined control sequence`
+  - `Emergency stop`
+
+## 目前仍可能看到的警告
+
+当前模板在 TeX Live 2026 下仍可能出现少量警告，例如：
+
+- `Underfull \hbox`
+- `Overfull \hbox`
+- `Overfull \vbox`
+- `xdvipdfmx:warning`
+
+这些大多来自样例内容、超链接锚点或页面紧凑度，不会阻止 PDF 生成。正式写作时，随着你替换为自己的内容，很多警告会自然减少。
+
+## 推荐阅读顺序
+
+如果你是新手，建议这样看：
+
+1. `README.md`
+2. `main.tex`
+3. 编译生成的 `Build/main.pdf`
+4. 再去逐章修改 `Main_Spine/*.tex`
+
+## 来源与致谢
+
+- 原始项目: [obster-y/XJTU-thesis](https://github.com/obster-y/XJTU-thesis)
+- 原项目许可证: [LPPL](https://www.latex-project.org/lppl/)
+
+感谢原作者提供模板基础。本仓库仅在其基础上完成个人环境适配与使用整理。
